@@ -7,7 +7,7 @@ class Worker:
 
     def GetSalary(self):
         salary = self.__rate * self.__days
-        print(f"Зарплата {self.get_name()} {self.get_surname()}: {salary}")
+        print(f"Зарплата сотрудника {self.get_name()} {self.get_surname()}: {salary}")
 
     def get_name(self):
         return self.__name
