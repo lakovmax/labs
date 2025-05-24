@@ -40,14 +40,12 @@ def print_all_ingredients():
     for values in cursor.fetchall():
         print(f"{values[0]}. {values[1]} (осталось {values[2]})")
 
-
 def print_all_drinks():
     cursor.execute("SELECT * FROM drinks")
     for values in cursor.fetchall():
         print(f"""{values[0]}. {values[1]} (осталось {values[4]}):
   Крепость: {values[2]}%
   Цена: {values[3]}""")
-
 
 def print_all_cocktails():
     cursor.execute("""
@@ -62,12 +60,10 @@ def print_all_cocktails():
   Крепость: {values[3]}%
   Цена: {values[2]}""")
 
-
 def restock_ingredient(id, count):
     cursor.execute("UPDATE ingredient SET count = count + ? WHERE id = ?", (count, id))
     connection.commit()
     print(f"Запасы ингредиента под ID {id} были пополнены на {count}ед.")
-
 
 def make_drink(id, count):
     cursor.execute("BEGIN")
@@ -90,7 +86,6 @@ def make_drink(id, count):
     connection.commit()
 
     print(f"Запасы напитка под ID {id} были пополнены на {count}ед.")
-
 
 def sell_drink(id, count, money):
     change = money
@@ -142,7 +137,6 @@ def sell_cocktail(id, count, money):
 
         connection.commit()
         return change
-
 
 connection = sqlite3.connect("i_love_drink.db")
 connection.isolation_level = None
@@ -264,7 +258,7 @@ while True:
             print("Выберите что именно хотите продать:")
             print("1. Алкогольный напиток")
             print("2. Коктейль")
-            type = int(input("> "))
+            type = int(input(": "))
             id = int(input("Введите ID: "))
             count = int(input("Введите сколько нужно продать: "))
             money = float(input("Введите сумму денег, данную покупателем: "))
